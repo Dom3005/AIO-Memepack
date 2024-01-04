@@ -62,6 +62,7 @@ namespace AIO_Memepack
             if (context.control.path.EndsWith("q")) nextClip = NextSong(__instance);
             else return;
 
+            __instance.UseItemOnClient(false);
             __instance.UseItemOnClient(true);
 
             //PlayNextServerRpc(__instance, nextClip);

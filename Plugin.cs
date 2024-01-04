@@ -4,14 +4,14 @@ using HarmonyLib;
 
 namespace AIO_Memepack
 {
-    [BepInPlugin(mod_id, mod_name, mod_version)]
+    [BepInPlugin(mod_guid, mod_name, mod_version)]
     public class MemepackBase : BaseUnityPlugin
     {
-        private const string mod_id = "dom3005.aio_memepack";
+        private const string mod_guid = "dom3005.aio_memepack";
         private const string mod_name = "AIO Memepack";
-        private const string mod_version = "1.1.0";
+        private const string mod_version = "1.2.0";
 
-        private readonly Harmony harmony = new Harmony(mod_id);
+        private readonly Harmony harmony = new Harmony(mod_guid);
 
         public static MemepackBase instance;
 
@@ -21,7 +21,7 @@ namespace AIO_Memepack
         {
             instance = this;
 
-            logger = BepInEx.Logging.Logger.CreateLogSource(mod_id);
+            logger = BepInEx.Logging.Logger.CreateLogSource(mod_guid);
             logger.LogMessage($"Loaded {mod_name} version {mod_version}!");
 
             ConfigManager.Init();

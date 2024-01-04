@@ -26,23 +26,15 @@ namespace AIO_Memepack
                 __instance.StartGame();
 
                 enableBoomboxSpawner = ConfigManager._enableBoomboxSpawner.Value;
+                GameObject ship = GameObject.Find("/Environment/HangarShip");
+                hasSpawnedBoombox = ship.GetComponentsInChildren<BoomboxItem>().Length > 0;
+
                 if (enableBoomboxSpawner && !hasSpawnedBoombox)
                 {
                     // Spawn boombox (id 1)
                     GameObject bb = ItemManager.spawnItemID(1, __instance.transform.position + new Vector3(-1, 2, 0));
                     bb.GetComponent<GrabbableObject>().fallTime = 0f;
                     bb.GetComponent<NetworkObject>().Spawn();
-
-                    // Spawn shovel (id 10)
-                    //ItemManager.spawnItemID(10, __instance.transform.position + new Vector3(1, 2, 0));
-
-                    //// Spawn beer (id 20)
-                    //ItemManager.spawnItemID(20, __instance.transform.position + new Vector3(-1, 2, 1));
-
-                    //// Clown horn (id 25)
-                    //ItemManager.spawnItemID(25, __instance.transform.position + new Vector3(-3, 2, 0));
-
-                    //GameObject jaeger = ItemManager.spawnItem(ItemManager.getItemNew(68), __instance.transform.position + new Vector3(-2, 2, 1));
 
                     //AudioClip spawnsound = AudioManager.getAudioClip("whistle.mp3");
 

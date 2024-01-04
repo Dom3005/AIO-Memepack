@@ -43,6 +43,7 @@ namespace AIO_Memepack
 
             // Boombox
             ItemManager.getItem(1).toolTips = new string[]{ "Toggle on/off: [LMB]", "Next song: [Q]" };
+            ItemManager.getItem(1).canBeGrabbedBeforeGameStart = true;
 
             // Shovel
             ItemManager.getItem(10).spawnPrefab.GetComponent<Shovel>().shovelHitForce *= ConfigManager._shovelStrength.Value; 

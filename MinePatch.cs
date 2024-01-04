@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace AIO_Memepack
@@ -16,6 +17,7 @@ namespace AIO_Memepack
             }
         }
 
+        [ClientRpc]
         private static void SetSoundsClientRpc(Landmine __instance, AudioClip clip1, AudioClip clip2)
         {
             __instance.mineDetonate = clip1;
