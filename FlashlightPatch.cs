@@ -15,6 +15,10 @@ namespace AIO_Memepack
         [HarmonyPostfix]
         public static void Start(ref FlashlightItem __instance)
         {
+            lightbulb = __instance.flashlightBulb;
+            initialIntensity = lightbulb.intensity * intensityMultiplier;
+            lightbulb.spotAngle *= 1.1f;
+
             if (ConfigManager._enableFlashlightColors.Value)
             {
                 float r = (float)Random.Range(50, 100) / 100;
@@ -30,10 +34,7 @@ namespace AIO_Memepack
         public static void Update(ref FlashlightItem __instance)
         {
             intensityMultiplier = ConfigManager._flashlightStrength.Value;
-
-            lightbulb = __instance.flashlightBulb;
             initialIntensity = lightbulb.intensity * intensityMultiplier;
-            lightbulb.spotAngle *= 1.1f;
         }
     }
 }

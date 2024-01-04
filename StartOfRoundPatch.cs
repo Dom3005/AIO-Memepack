@@ -42,7 +42,7 @@ namespace AIO_Memepack
             jaegerScan.headerText = jaeger.itemName;
 
             // Boombox
-            ItemManager.getItem(1).toolTips = new string[]{"[LMB] Toggle on/off", "[Q] Next song"};// AddItem("[Q] Next Song");
+            ItemManager.getItem(1).toolTips = new string[]{ "Toggle on/off: [LMB]", "Next song: [Q]" };
 
             // Shovel
             ItemManager.getItem(10).spawnPrefab.GetComponent<Shovel>().shovelHitForce *= ConfigManager._shovelStrength.Value; 

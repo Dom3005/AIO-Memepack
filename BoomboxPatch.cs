@@ -58,28 +58,18 @@ namespace AIO_Memepack
         public static void PlayNextSong(InputAction.CallbackContext context, BoomboxItem __instance)
         {
             if (__instance.playerHeldBy == null || __instance.playerHeldBy.playerClientId != StartOfRound.Instance.localPlayerController.playerClientId) return;
-
             AudioClip nextClip;
             if (context.control.path.EndsWith("q")) nextClip = NextSong(__instance);
             else return;
 
-            __instance.boomboxAudio.clip = nextClip;
-            __instance.boomboxAudio.pitch = 1f;
-            __instance.boomboxAudio.Play();
-            __instance.isBeingUsed = true;
-            __instance.isPlayingMusic = true;
+            __instance.UseItemOnClient(true);
+
+            //PlayNextServerRpc(__instance, nextClip);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public static void PlayNextServer(InputAction.CallbackContext context, BoomboxItem __instance)
+        public static void PlayNextServerRpc(BoomboxItem __instance, AudioClip nextClip)
         {
-
-            if (__instance.playerHeldBy == null || __instance.playerHeldBy.playerClientId != StartOfRound.Instance.localPlayerController.playerClientId) return;
-
-            AudioClip nextClip;
-            if (context.control.path.EndsWith("q")) nextClip = NextSong(__instance);
-            else return;
-
             __instance.boomboxAudio.clip = nextClip;
             __instance.boomboxAudio.pitch = 1f;
             __instance.boomboxAudio.Play();
