@@ -1,24 +1,6 @@
 ﻿using System.IO;
-using AIO_Memepack;
 using BepInEx;
 using BepInEx.Configuration;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.Logging;
-using HarmonyLib;
-using LCSoundTool.Networking;
-using LCSoundTool.Patches;
-using LCSoundTool.Resources;
-using LCSoundTool.Utilities;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using LCSoundTool;
 
 namespace AIO_Memepack
 {

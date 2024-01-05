@@ -59,8 +59,7 @@ namespace AIO_Memepack
         {
             if (__instance.playerHeldBy == null || __instance.playerHeldBy.playerClientId != StartOfRound.Instance.localPlayerController.playerClientId) return;
             AudioClip nextClip;
-            if (context.control.path.EndsWith("q")) nextClip = NextSong(__instance);
-            else return;
+            if (!context.control.path.EndsWith("q")) return;
 
             __instance.UseItemOnClient(false);
             __instance.UseItemOnClient(true);
@@ -92,10 +91,7 @@ namespace AIO_Memepack
 
         public static AudioClip NextSong(BoomboxItem __instance)
         {
-            int next = currentSongIndex++;
-            if (currentSongIndex >= __instance.musicAudios.Length) currentSongIndex = 0;
-
-            return __instance.musicAudios[next];
+            return __instance.musicAudios[Random.Range(0, __instance.musicAudios.Length)];
         }
 
     }

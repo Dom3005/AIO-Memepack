@@ -17,16 +17,15 @@ namespace AIO_Memepack
             string path = Path.Combine(Paths.PluginPath, "AIO Memepack", bundlename);
             if (!File.Exists(path))
             {
-                MemepackBase.instance.logger.LogError($"{path}");
                 path = Path.Combine(Paths.PluginPath, "Dom3005-German_AIO_Memepack", "AIO Memepack", bundlename);
                 if (!File.Exists(path))
                 {
-                    MemepackBase.instance.logger.LogError($"Could not find bundle \"{bundlename}\"");
-                    MemepackBase.instance.logger.LogError($"{path}");
+                    MemepackBase.logger.LogError($"Could not find bundle \"{bundlename}\"");
+                    MemepackBase.logger.LogError($"{path}");
                     return null;
                 }
             }
-            MemepackBase.instance.logger.LogInfo(path);
+            MemepackBase.logger.LogInfo(path);
 
             AssetBundle bundle = AssetBundle.LoadFromFile(path);
             loadedBundles.Add(bundlename, bundle);
@@ -60,12 +59,31 @@ namespace AIO_Memepack
             // look at spawn positions (strings)
         }
 
+        public static void ReplaceAllScrap(Item item, int rarity)
+        {
+            SpawnableItemWithRarity spawnable = new SpawnableItemWithRarity();
+            spawnable.rarity = rarity;
+            spawnable.spawnableItem = item;
+
+            SelectableLevel[] levels = StartOfRound.Instance.levels;
+
+            foreach (SelectableLevel level in levels)
+            {
+                level.spawnableScrap.Clear();
+                level.maxScrap *= 2;
+                level.minScrap *= 2;
+                level.spawnableScrap.Add(spawnable);
+            }
+
+            // look at spawn positions (strings)
+        }
+
         public static void logComponents(GameObject go)
         {
             Component[] comps = go.GetComponents<Component>();
             foreach(Component comp in comps)
             {
-                MemepackBase.instance.logger.LogInfo(comp.ToString());
+                MemepackBase.logger.LogInfo(comp.ToString());
             }
         }
 
@@ -81,7 +99,7 @@ namespace AIO_Memepack
         {
             foreach (Transform child in go.transform)
             {
-                MemepackBase.instance.logger.LogInfo(child.ToString());
+                MemepackBase.logger.LogInfo(child.ToString());
             }
         }
     }

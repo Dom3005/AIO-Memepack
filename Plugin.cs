@@ -9,13 +9,13 @@ namespace AIO_Memepack
     {
         private const string mod_guid = "dom3005.aio_memepack";
         private const string mod_name = "AIO Memepack";
-        private const string mod_version = "1.2.0";
+        private const string mod_version = "1.3.0";
 
         private readonly Harmony harmony = new Harmony(mod_guid);
 
         public static MemepackBase instance;
 
-        internal ManualLogSource logger;
+        internal static ManualLogSource logger;
 
         void Awake()
         {

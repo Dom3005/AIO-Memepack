@@ -21,47 +21,10 @@ namespace AIO_Memepack
 
         [HarmonyPatch("Start")]
         [HarmonyPrefix]
-        private static void RegisterScrap()
+        private static void Start_prefix()
         {
-            // Jaegermeister, based on soda (id 50)
-            Item jaeger = ItemManager.getItemNew(50);
-            jaeger.itemName = "Jägermeister";
-            jaeger.creditsWorth = 56;
-            jaeger.minValue = 100;
-            jaeger.maxValue = 100;
-            jaeger.grabSFX = AudioManager.getAudioClip("jaegermeister.mp3");
-            jaeger.itemId = StartOfRound.Instance.allItemsList.itemsList.Count;
-
-            GameObject jaegerGO = Utils.loadGameObject("Jaeger.prefab", Utils.loadBundle("jaegermeister"));
-
-            jaeger.spawnPrefab.GetComponent<MeshFilter>().mesh = jaegerGO.GetComponentInChildren<MeshFilter>().mesh;
-            jaeger.spawnPrefab.GetComponent<MeshRenderer>().materials = jaegerGO.GetComponentInChildren<MeshRenderer>().materials;
-            jaeger.spawnPrefab.GetComponent<GrabbableObject>().itemProperties = jaeger;
-
-            ScanNodeProperties jaegerScan = jaeger.spawnPrefab.transform.GetChild(0).GetComponent<ScanNodeProperties>();
-            jaegerScan.headerText = jaeger.itemName;
-
-            // Boombox
-            ItemManager.getItem(1).toolTips = new string[]{ "Toggle on/off: [LMB]", "Next song: [Q]" };
-            ItemManager.getItem(1).canBeGrabbedBeforeGameStart = true;
-
-            // Shovel
-            ItemManager.getItem(10).spawnPrefab.GetComponent<Shovel>().shovelHitForce *= ConfigManager._shovelStrength.Value; 
-
-            // Bier
-            ItemManager.getItem(20).grabSFX = AudioManager.getAudioClip("michi.mp3");
-
-            // Clown horn
-            ItemManager.getItem(25).spawnPrefab.GetComponent<NoisemakerProp>().noiseSFX = new AudioClip[]{ AudioManager.getAudioClip("goofy-ahh.mp3") };
-            ItemManager.getItem(25).spawnPrefab.GetComponent<NoisemakerProp>().noiseSFXFar = new AudioClip[]{ AudioManager.getAudioClip("goofy-ahh.mp3") };
-
-            // Pickle jar
-            ItemManager.getItem(44).grabSFX = AudioManager.getAudioClip("pickle-rick.mp3");
-
-
-
-            StartOfRound.Instance.allItemsList.itemsList.Add(jaeger);
-            Utils.addItemToAllLevels(jaeger, 100);
+            ItemManager.RegisterScrap();
+            ItemManager.PatchItems();
         }
     }
 }

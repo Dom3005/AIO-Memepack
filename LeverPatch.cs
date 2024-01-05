@@ -32,18 +32,7 @@ namespace AIO_Memepack
                 if (enableBoomboxSpawner && !hasSpawnedBoombox)
                 {
                     // Spawn boombox (id 1)
-                    GameObject bb = ItemManager.spawnItemID(1, __instance.transform.position + new Vector3(-1, 2, 0));
-                    bb.GetComponent<GrabbableObject>().fallTime = 0f;
-                    bb.GetComponent<NetworkObject>().Spawn();
-
-                    //AudioClip spawnsound = AudioManager.getAudioClip("whistle.mp3");
-
-                    //AudioSource audioPlayer = AudioManager.createAudioSource(__instance.transform.position, __instance.transform, 30f);
-
-                    //audioPlayer.clip = spawnsound;
-                    //audioPlayer.Play();
-                    //__instance.StartCoroutine(stopPlayerAfter(audioPlayer, 20));
-
+                    ItemManager.spawnItemID(1, __instance.transform.position + new Vector3(-1, 2, 0));
                     hasSpawnedBoombox = true;
                 }
             }
@@ -51,6 +40,8 @@ namespace AIO_Memepack
             {
                 __instance.EndGame();
             }
+
+            MemepackBase.logger.LogInfo(__instance.transform.position);
             return false;
         }
 
